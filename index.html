@@ -3,202 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aica's Dev & Gaming Journal</title>
+    <title>Aica Ortega | Dashboard</title>
     <style>
         :root {
             --page-bg: #16425b;
-            --article-bg: #3a7ca5;
-            --title-color: #81c3d7;
+            --card-bg: #3a7ca5;
+            --primary-light: #81c3d7;
             --text-main: #ffffff;
-            --text-muted: #d1e3ee;
-            --accent-glow: #81c3d7;
-            --nav-bg: #0f2d3e;
+            --shadow-glow: rgba(129, 195, 215, 0.4);
         }
 
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--page-bg);
             color: var(--text-main);
-            line-height: 1.7;
             margin: 0;
-            padding: 0;
-        }
-
-        /* Floating Dashboard Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--nav-bg);
-            padding: 15px 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        nav a {
-            color: var(--title-color);
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            padding: 5px 15px;
-            border: 1px solid transparent;
-            border-radius: 5px;
-        }
-
-        nav a:hover {
-            border-color: var(--accent-glow);
-            background: rgba(129, 195, 215, 0.1);
-        }
-
-        /* Section Layout */
-        section {
-            padding-top: 100px; /* Space for the fixed nav */
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .container {
-            max-width: 850px;
-            width: 90%;
-            margin-bottom: 50px;
-        }
-
         header {
             text-align: center;
-            margin-bottom: 40px;
+            padding: 30px 20px 10px; /* Greatly reduced padding */
         }
 
-        h1 {
-            font-size: 2.8rem;
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--shadow-glow);
+        }
+
+        .author-meta {
+            font-style: italic;
+            color: var(--primary-light);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            padding: 10px 20px;
+        }
+
+        /* Compact Quest Card Grid */
+        .quest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px; /* Tighter gap */
+            margin-bottom: 20px;
+        }
+
+        .quest-card {
+            background: var(--card-bg);
+            padding: 15px 20px; /* Reduced internal whitespace */
+            border-radius: 10px;
+            border: 1px solid rgba(129, 195, 215, 0.2);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quest-card:hover {
+            background: rgba(129, 195, 215, 0.1);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 15px var(--shadow-glow);
+        }
+
+        .quest-info h2 {
+            margin: 0;
+            font-size: 1.1rem;
             color: #d9dcd6;
-            margin-bottom: 10px;
+        }
+
+        .quest-info span {
+            font-size: 0.7rem;
+            color: var(--primary-light);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        article {
-            background-color: var(--article-bg);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
+        /* STREAMLINED VIEWER */
+        #mission-control {
+            width: 100%;
+            display: none;
+            margin-top: 10px;
         }
 
-        /* Back to Top Button */
-        .back-to-top {
-            display: inline-block;
-            margin-top: 30px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            background: rgba(0,0,0,0.2);
-            padding: 8px 20px;
-            border-radius: 50px;
-            transition: 0.3s;
+        .viewer-taskbar {
+            background: #000;
+            padding: 8px 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--primary-light);
+            border-bottom: none;
         }
 
-        .back-to-top:hover {
-            background: var(--title-color);
-            color: var(--nav-bg);
+        .close-btn {
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
-        /* Specific Styling from your parts */
-        .highlight { color: var(--accent-glow); font-weight: bold; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
-        .tech-tag { color: var(--title-color); font-family: 'Courier New', monospace; font-weight: bold; }
-        blockquote { background: rgba(22, 66, 91, 0.4); border-left: 5px solid var(--title-color); margin: 30px 0; padding: 20px; font-style: italic; border-radius: 0 10px 10px 0; }
-        hr { border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0; }
-        .intro-hook { font-style: italic; border-left: 5px solid var(--accent-glow); padding: 20px; margin-bottom: 40px; background: rgba(22, 66, 91, 0.3); border-radius: 0 15px 15px 0; }
-        .conclusion-text { background: rgba(22, 66, 91, 0.4); padding: 30px; border-radius: 15px; margin-top: 40px; border-top: 2px solid var(--title-color); }
-        h2 { color: #d9dcd6; border-bottom: 2px solid rgba(129, 195, 215, 0.3); padding-bottom: 10px; margin-top: 35px; }
-        p { text-align: justify; color: #f0f7fa; font-size: 1.15rem; }
+        iframe {
+            width: 100%;
+            height: 75vh;
+            border: 1px solid var(--primary-light);
+            border-radius: 0 0 8px 8px;
+            background: #fff;
+        }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background: var(--primary-light);
+            color: var(--page-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+        }
 
         @media (max-width: 600px) {
-            nav { gap: 5px; flex-wrap: wrap; }
-            h1 { font-size: 1.8rem; }
+            header h1 { font-size: 1.8rem; }
+            iframe { height: 60vh; }
         }
     </style>
 </head>
 <body>
 
-    <nav id="top">
-        <a href="#part1">C++ vs HTML</a>
-        <a href="#part2">Healthy Gambling</a>
-        <a href="#part3">Work-in-Progress</a>
-    </nav>
+    <button onclick="window.scrollTo(0,0)" id="scrollTopBtn">▲</button>
 
-    <section id="part1">
-        <div class="container">
-            <header>
-                <h1>Tug-of-War: C++ & HTML/CSS</h1>
-                <p class="author-meta">By: Aica Ortega</p>
-            </header>
-            <article>
-                <p>Nakaranas na ba kayo na parang sasabog na ang utak niyo dahil sa dami ng keywords at syntax na kailangang tandaan? Switching from object-oriented logic to visual design feels like a constant reality check...</p>
-                <h2>The Logic of C++</h2>
-                <p>C++ is a language I’ve learned from a young age, so it’s something I find easier to understand compared to others...</p>
-                <hr>
-                <h2>The Maze of Design</h2>
-                <p>As someone who isn't naturally a creative person, jumping into <span class="tech-tag">HTML/CSS</span> felt like navigating a maze...</p>
-                <blockquote>"Lahat naman tayo nagsisimula sa umpisa... the 'halo-halo' logic of C++ prepared me to handle the strict structure of HTML/CSS."</blockquote>
-                <div style="text-align: center;">
-                    <a href="#top" class="back-to-top">↑ Back to Dashboard</a>
-                </div>
-            </article>
-        </div>
-    </section>
+    <header>
+        <h1>Aica Ortega</h1>
+        <p class="author-meta">Game Dev Student // Portfolio Dashboard</p>
+    </header>
 
-    <section id="part2">
-        <div class="container">
-            <header>
-                <h1>My "Healthy" Gambling Escape</h1>
-                <p class="author-meta">By: Aica Ortega</p>
-            </header>
-            <article>
-                <h2>The Weekend Ritual</h2>
-                <p>The first rule of my "gambling" is simple: <strong>Walang totoong pera.</strong> I am a proud member of the F2P (Free-to-Play) community...</p>
-                <p>My world shrinks down to just the screen, the music, and the hope of seeing that <span class="highlight">"Gold Glow."</span></p>
-                <blockquote>"To anyone feeling burnt out: find your own 'grind.' Whether it’s gaming, or any hobby that lets you switch off your 'work brain'..."</blockquote>
-                <div style="text-align: center;">
-                    <a href="#top" class="back-to-top">↑ Back to Dashboard</a>
+    <div class="container">
+        <div class="quest-grid">
+            <div class="quest-card" onclick="loadMission('part1.html')">
+                <div class="quest-info">
+                    <span>Chapter 01</span>
+                    <h2>Tug-of-War</h2>
                 </div>
-            </article>
-        </div>
-    </section>
+                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+            </div>
 
-    <section id="part3">
-        <div class="container">
-            <header>
-                <h1>Work-in-Progress</h1>
-                <p class="author-meta">By: Aica Ortega</p>
-            </header>
-            <article>
-                <section class="intro-hook">
-                    "Gaano na ba karaming oras ang naubos natin sa pag-grind? If you’re like me, gaming isn’t just a hobby; it’s a lifestyle."
-                </section>
-                <h2>Building My Dream Sandbox</h2>
-                <p>I don't just want to play; I want to <span class="highlight">create</span>. Getting my degree is my <span class="highlight">"Level 1" quest</span>.</p>
-                <div class="conclusion-text">
-                    <p><strong>My Takeaway:</strong> Don't just consume the things you love—analyze them. Soon, I won't just be playing someone else's world; I'll be inviting you into mine.</p>
+            <div class="quest-card" onclick="loadMission('part2.html')">
+                <div class="quest-info">
+                    <span>Chapter 02</span>
+                    <h2>Sandbox Dream</h2>
                 </div>
-                <div style="text-align: center;">
-                    <a href="#top" class="back-to-top">↑ Back to Dashboard</a>
+                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+            </div>
+
+            <div class="quest-card" onclick="loadMission('part3.html')">
+                <div class="quest-info">
+                    <span>Chapter 03</span>
+                    <h2>The Grind</h2>
                 </div>
-            </article>
+                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+            </div>
         </div>
-    </section>
+
+        <div id="mission-control">
+            <div class="viewer-taskbar">
+                <span style="font-size: 0.8rem; color: var(--primary-light); font-family: monospace;">SYSTEM_VIEWER.EXE</span>
+                <button class="close-btn" onclick="closeMission()">EXIT</button>
+            </div>
+            <iframe id="missionFrame" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        function loadMission(pageUrl) {
+            const viewer = document.getElementById('mission-control');
+            const frame = document.getElementById('missionFrame');
+            viewer.style.display = 'block';
+            frame.src = pageUrl;
+            setTimeout(() => {
+                viewer.scrollIntoView({ behavior: 'smooth' });
+            }, 50);
+        }
+
+        function closeMission() {
+            document.getElementById('mission-control').style.display = 'none';
+            document.getElementById('missionFrame').src = "";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        let mybutton = document.getElementById("scrollTopBtn");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        };
+    </script>
 
 </body>
 </html>
