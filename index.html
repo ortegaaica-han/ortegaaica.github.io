@@ -20,53 +20,42 @@
             color: var(--text-main);
             margin: 0;
             padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         header h1 {
             font-size: 2.2rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
             color: #d9dcd6;
         }
 
-        .author-meta {
-            font-style: italic;
-            color: var(--primary-light);
-            font-size: 1rem;
-        }
-
-        .container {
-            max-width: 900px;
-            width: 95%;
-        }
-
-        /* Compact Grid */
+        /* Compact Navigation Grid */
         .quest-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 12px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
         .quest-card {
             background: var(--card-bg);
-            padding: 15px 20px;
+            padding: 15px;
             border-radius: 8px;
             border: 1px solid rgba(129, 195, 215, 0.2);
             cursor: pointer;
+            text-align: center;
             transition: 0.2s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .quest-card:hover {
@@ -74,25 +63,26 @@
             background: rgba(129, 195, 215, 0.1);
         }
 
-        .quest-card h2 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+        .quest-card h2 { margin: 0; font-size: 1rem; }
 
-        /* Simplified Content Area */
-        #content-area {
+        /* Content Sections - Hidden by default */
+        .content-section {
             display: none;
-            width: 100%;
-            margin-top: 10px;
+            margin-top: 20px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-top: 2px solid var(--primary-light);
         }
 
-        iframe {
-            width: 100%;
-            height: 80vh;
-            border: 1px solid rgba(129, 195, 215, 0.3);
-            border-radius: 8px;
-            background: #fff;
+        .close-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
 
         #scrollTopBtn {
@@ -107,57 +97,72 @@
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Aica Ortega</h1>
-        <p class="author-meta">Game Dev Student // Portfolio</p>
-    </header>
-
     <div class="container">
+        <header>
+            <h1>Aica Ortega</h1>
+            <p style="color:var(--primary-light); font-style:italic;">Portfolio Dashboard</p>
+        </header>
+
         <div class="quest-grid">
-            <div class="quest-card" onclick="loadContent('part1.html')">
-                <h2>Chapter 01: Tug-of-War</h2>
-                <span>→</span>
-            </div>
-            <div class="quest-card" onclick="loadContent('part2.html')">
-                <h2>Chapter 02: Sandbox Dream</h2>
-                <span>→</span>
-            </div>
-            <div class="quest-card" onclick="loadContent('part3.html')">
-                <h2>Chapter 03: The Grind</h2>
-                <span>→</span>
-            </div>
+            <div class="quest-card" onclick="showSection('part1')"><h2>Chapter 01</h2></div>
+            <div class="quest-card" onclick="showSection('part2')"><h2>Chapter 02</h2></div>
+            <div class="quest-card" onclick="showSection('part3')"><h2>Chapter 03</h2></div>
         </div>
 
-        <div id="content-area">
-            <iframe id="contentFrame" src="" frameborder="0"></iframe>
+        <div id="part1" class="content-section">
+            <h2>Tug-of-War</h2>
+            <p>Nakaranas na ba kayo na parang sasabog na ang utak niyo dahil sa dami ng kailangang tandaan? This chapter explores the struggle between C++ logic and CSS design...</p>
+            <span class="close-link" onclick="closeSection('part1')">↑ Done Reading (Scroll Up)</span>
+        </div>
+
+        <div id="part2" class="content-section">
+            <h2>Building My Dream Sandbox</h2>
+            <p>I don't just want to play; I want to create. This is my vision for a game that blends strategy, farming, and open-world freedom...</p>
+            <span class="close-link" onclick="closeSection('part2')">↑ Done Reading (Scroll Up)</span>
+        </div>
+
+        <div id="part3" class="content-section">
+            <h2>Grind, Pull, Repeat</h2>
+            <p>Exploring the ritual of gacha games and the "Gold Glow" that keeps the motivation alive during the weekend grind...</p>
+            <span class="close-link" onclick="closeSection('part3')">↑ Done Reading (Scroll Up)</span>
         </div>
     </div>
 
     <button onclick="window.scrollTo(0,0)" id="scrollTopBtn">▲</button>
 
     <script>
-        function loadContent(url) {
-            const area = document.getElementById('content-area');
-            const frame = document.getElementById('contentFrame');
-            area.style.display = 'block';
-            frame.src = url;
+        function showSection(id) {
+            // Hide all sections first
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
             
-            // Wait a tiny bit for display:block to register, then scroll
+            // Show the clicked one
+            const target = document.getElementById(id);
+            target.style.display = 'block';
+            
+            // Scroll to it
             setTimeout(() => {
-                area.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({ behavior: 'smooth' });
             }, 50);
         }
 
-        // Scroll button logic
+        function closeSection(id) {
+            // Scroll to top first
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Hide the section after the scroll starts
+            setTimeout(() => {
+                document.getElementById(id).style.display = 'none';
+            }, 500);
+        }
+
         let btn = document.getElementById("scrollTopBtn");
         window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 btn.style.display = "block";
             } else {
                 btn.style.display = "none";
