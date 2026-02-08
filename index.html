@@ -3,172 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aica Ortega | Portfolio</title>
+    <title>Aica's Dev & Gaming Journal</title>
     <style>
         :root {
             --page-bg: #16425b;
-            --card-bg: #3a7ca5;
-            --primary-light: #81c3d7;
+            --article-bg: #3a7ca5;
+            --title-color: #81c3d7;
             --text-main: #ffffff;
+            --text-muted: #d1e3ee;
+            --accent-glow: #81c3d7;
+            --nav-bg: #0f2d3e;
         }
 
-        html { scroll-behavior: smooth; }
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--page-bg);
             color: var(--text-main);
+            line-height: 1.7;
             margin: 0;
-            padding: 20px 0;
+            padding: 0;
+        }
+
+        /* Floating Dashboard Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--title-color);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            padding: 5px 15px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            border-color: var(--accent-glow);
+            background: rgba(129, 195, 215, 0.1);
+        }
+
+        /* Section Layout */
+        section {
+            padding-top: 100px; /* Space for the fixed nav */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 850px;
+            width: 90%;
+            margin-bottom: 50px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            margin: 0;
-            text-transform: uppercase;
-            color: #d9dcd6;
-        }
-
-        /* Compact Navigation Grid */
-        .quest-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
             margin-bottom: 40px;
         }
 
-        .quest-card {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(129, 195, 215, 0.2);
-            cursor: pointer;
-            text-align: center;
-            transition: 0.2s;
+        h1 {
+            font-size: 2.8rem;
+            color: #d9dcd6;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .quest-card:hover {
-            border-color: var(--primary-light);
-            background: rgba(129, 195, 215, 0.1);
+        article {
+            background-color: var(--article-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
         }
 
-        .quest-card h2 { margin: 0; font-size: 1rem; }
-
-        /* Content Sections - Hidden by default */
-        .content-section {
-            display: none;
-            margin-top: 20px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            border-top: 2px solid var(--primary-light);
-        }
-
-        .close-link {
+        /* Back to Top Button */
+        .back-to-top {
             display: inline-block;
             margin-top: 30px;
-            color: var(--primary-light);
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: bold;
             font-size: 0.9rem;
-            cursor: pointer;
+            background: rgba(0,0,0,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: 0.3s;
         }
 
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            background: var(--primary-light);
-            color: var(--page-bg);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
+        .back-to-top:hover {
+            background: var(--title-color);
+            color: var(--nav-bg);
+        }
+
+        /* Specific Styling from your parts */
+        .highlight { color: var(--accent-glow); font-weight: bold; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+        .tech-tag { color: var(--title-color); font-family: 'Courier New', monospace; font-weight: bold; }
+        blockquote { background: rgba(22, 66, 91, 0.4); border-left: 5px solid var(--title-color); margin: 30px 0; padding: 20px; font-style: italic; border-radius: 0 10px 10px 0; }
+        hr { border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0; }
+        .intro-hook { font-style: italic; border-left: 5px solid var(--accent-glow); padding: 20px; margin-bottom: 40px; background: rgba(22, 66, 91, 0.3); border-radius: 0 15px 15px 0; }
+        .conclusion-text { background: rgba(22, 66, 91, 0.4); padding: 30px; border-radius: 15px; margin-top: 40px; border-top: 2px solid var(--title-color); }
+        h2 { color: #d9dcd6; border-bottom: 2px solid rgba(129, 195, 215, 0.3); padding-bottom: 10px; margin-top: 35px; }
+        p { text-align: justify; color: #f0f7fa; font-size: 1.15rem; }
+
+        @media (max-width: 600px) {
+            nav { gap: 5px; flex-wrap: wrap; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Aica Ortega</h1>
-            <p style="color:var(--primary-light); font-style:italic;">Portfolio Dashboard</p>
-        </header>
+    <nav id="top">
+        <a href="#part1">C++ vs HTML</a>
+        <a href="#part2">Healthy Gambling</a>
+        <a href="#part3">Work-in-Progress</a>
+    </nav>
 
-        <div class="quest-grid">
-            <div class="quest-card" onclick="showSection('part1')"><h2>Chapter 01</h2></div>
-            <div class="quest-card" onclick="showSection('part2')"><h2>Chapter 02</h2></div>
-            <div class="quest-card" onclick="showSection('part3')"><h2>Chapter 03</h2></div>
+    <section id="part1">
+        <div class="container">
+            <header>
+                <h1>Tug-of-War: C++ & HTML/CSS</h1>
+                <p class="author-meta">By: Aica Ortega</p>
+            </header>
+            <article>
+                <p>Nakaranas na ba kayo na parang sasabog na ang utak niyo dahil sa dami ng keywords at syntax na kailangang tandaan? Switching from object-oriented logic to visual design feels like a constant reality check...</p>
+                <h2>The Logic of C++</h2>
+                <p>C++ is a language I’ve learned from a young age, so it’s something I find easier to understand compared to others...</p>
+                <hr>
+                <h2>The Maze of Design</h2>
+                <p>As someone who isn't naturally a creative person, jumping into <span class="tech-tag">HTML/CSS</span> felt like navigating a maze...</p>
+                <blockquote>"Lahat naman tayo nagsisimula sa umpisa... the 'halo-halo' logic of C++ prepared me to handle the strict structure of HTML/CSS."</blockquote>
+                <div style="text-align: center;">
+                    <a href="#top" class="back-to-top">↑ Back to Dashboard</a>
+                </div>
+            </article>
         </div>
+    </section>
 
-        <div id="part1" class="content-section">
-            <h2>Tug-of-War</h2>
-            <p>Nakaranas na ba kayo na parang sasabog na ang utak niyo dahil sa dami ng kailangang tandaan? This chapter explores the struggle between C++ logic and CSS design...</p>
-            <span class="close-link" onclick="closeSection('part1')">↑ Done Reading (Scroll Up)</span>
+    <section id="part2">
+        <div class="container">
+            <header>
+                <h1>My "Healthy" Gambling Escape</h1>
+                <p class="author-meta">By: Aica Ortega</p>
+            </header>
+            <article>
+                <h2>The Weekend Ritual</h2>
+                <p>The first rule of my "gambling" is simple: <strong>Walang totoong pera.</strong> I am a proud member of the F2P (Free-to-Play) community...</p>
+                <p>My world shrinks down to just the screen, the music, and the hope of seeing that <span class="highlight">"Gold Glow."</span></p>
+                <blockquote>"To anyone feeling burnt out: find your own 'grind.' Whether it’s gaming, or any hobby that lets you switch off your 'work brain'..."</blockquote>
+                <div style="text-align: center;">
+                    <a href="#top" class="back-to-top">↑ Back to Dashboard</a>
+                </div>
+            </article>
         </div>
+    </section>
 
-        <div id="part2" class="content-section">
-            <h2>Building My Dream Sandbox</h2>
-            <p>I don't just want to play; I want to create. This is my vision for a game that blends strategy, farming, and open-world freedom...</p>
-            <span class="close-link" onclick="closeSection('part2')">↑ Done Reading (Scroll Up)</span>
+    <section id="part3">
+        <div class="container">
+            <header>
+                <h1>Work-in-Progress</h1>
+                <p class="author-meta">By: Aica Ortega</p>
+            </header>
+            <article>
+                <section class="intro-hook">
+                    "Gaano na ba karaming oras ang naubos natin sa pag-grind? If you’re like me, gaming isn’t just a hobby; it’s a lifestyle."
+                </section>
+                <h2>Building My Dream Sandbox</h2>
+                <p>I don't just want to play; I want to <span class="highlight">create</span>. Getting my degree is my <span class="highlight">"Level 1" quest</span>.</p>
+                <div class="conclusion-text">
+                    <p><strong>My Takeaway:</strong> Don't just consume the things you love—analyze them. Soon, I won't just be playing someone else's world; I'll be inviting you into mine.</p>
+                </div>
+                <div style="text-align: center;">
+                    <a href="#top" class="back-to-top">↑ Back to Dashboard</a>
+                </div>
+            </article>
         </div>
-
-        <div id="part3" class="content-section">
-            <h2>Grind, Pull, Repeat</h2>
-            <p>Exploring the ritual of gacha games and the "Gold Glow" that keeps the motivation alive during the weekend grind...</p>
-            <span class="close-link" onclick="closeSection('part3')">↑ Done Reading (Scroll Up)</span>
-        </div>
-    </div>
-
-    <button onclick="window.scrollTo(0,0)" id="scrollTopBtn">▲</button>
-
-    <script>
-        function showSection(id) {
-            // Hide all sections first
-            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
-            
-            // Show the clicked one
-            const target = document.getElementById(id);
-            target.style.display = 'block';
-            
-            // Scroll to it
-            setTimeout(() => {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }, 50);
-        }
-
-        function closeSection(id) {
-            // Scroll to top first
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Hide the section after the scroll starts
-            setTimeout(() => {
-                document.getElementById(id).style.display = 'none';
-            }, 500);
-        }
-
-        let btn = document.getElementById("scrollTopBtn");
-        window.onscroll = function() {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
-        };
-    </script>
+    </section>
 
 </body>
 </html>
