@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aica Ortega | Dashboard</title>
+    <title>Aica Ortega | Home</title>
     <style>
         :root {
             --page-bg: #16425b;
@@ -27,7 +27,7 @@
 
         header {
             text-align: center;
-            padding: 30px 20px 10px; /* Greatly reduced padding */
+            padding: 40px 20px 10px;
         }
 
         header h1 {
@@ -38,11 +38,13 @@
             text-shadow: 0 0 15px var(--shadow-glow);
         }
 
-        .author-meta {
-            font-style: italic;
-            color: var(--primary-light);
-            font-size: 1rem;
-            margin-top: 5px;
+        .author-intro {
+            max-width: 700px;
+            text-align: center;
+            margin: 10px auto 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d1e3ee;
         }
 
         .container {
@@ -51,24 +53,24 @@
             padding: 10px 20px;
         }
 
-        /* Compact Quest Card Grid */
+        /* Nav Grid */
         .quest-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px; /* Tighter gap */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 20px;
         }
 
         .quest-card {
             background: var(--card-bg);
-            padding: 15px 20px; /* Reduced internal whitespace */
+            padding: 15px 20px;
             border-radius: 10px;
             border: 1px solid rgba(129, 195, 215, 0.2);
             transition: all 0.2s ease;
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
         }
 
         .quest-card:hover {
@@ -77,20 +79,10 @@
             box-shadow: 0 0 15px var(--shadow-glow);
         }
 
-        .quest-info h2 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: #d9dcd6;
-        }
+        .quest-card h2 { margin: 0; font-size: 1rem; }
+        .quest-card span { font-size: 0.7rem; color: var(--primary-light); text-transform: uppercase; }
 
-        .quest-info span {
-            font-size: 0.7rem;
-            color: var(--primary-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* STREAMLINED VIEWER */
+        /* Content Area */
         #mission-control {
             width: 100%;
             display: none;
@@ -105,7 +97,14 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid var(--primary-light);
-            border-bottom: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 75vh;
+            border: 1px solid var(--primary-light);
+            border-radius: 0 0 8px 8px;
+            background: #fff;
         }
 
         .close-btn {
@@ -115,16 +114,7 @@
             border-radius: 4px;
             cursor: pointer;
             padding: 2px 8px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        iframe {
-            width: 100%;
-            height: 75vh;
-            border: 1px solid var(--primary-light);
-            border-radius: 0 0 8px 8px;
-            background: #fff;
+            font-size: 11px;
         }
 
         #scrollTopBtn {
@@ -141,11 +131,6 @@
             cursor: pointer;
             z-index: 100;
         }
-
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
-            iframe { height: 60vh; }
-        }
     </style>
 </head>
 <body>
@@ -154,39 +139,40 @@
 
     <header>
         <h1>Aica Ortega</h1>
-        <p class="author-meta">Game Dev Student // Portfolio Dashboard</p>
+        <p class="author-intro">
+            Hello! I am an aspiring Game Developer currently navigating my training arc in college. 
+            I am passionate about blending complex logic with immersive storytelling. 
+            Welcome to my Mission Control.
+        </p>
     </header>
 
     <div class="container">
         <div class="quest-grid">
+            <div class="quest-card" onclick="loadMission('about.html')">
+                <span>Profile</span>
+                <h2>Biography</h2>
+            </div>
+            <div class="quest-card" onclick="loadMission('resume.html')">
+                <span>Credentials</span>
+                <h2>Resume / Skills</h2>
+            </div>
             <div class="quest-card" onclick="loadMission('part1.html')">
-                <div class="quest-info">
-                    <span>Chapter 01</span>
-                    <h2>Tug-of-War</h2>
-                </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <span>Blog 01</span>
+                <h2>Tug-of-War</h2>
             </div>
-
             <div class="quest-card" onclick="loadMission('part2.html')">
-                <div class="quest-info">
-                    <span>Chapter 02</span>
-                    <h2>Sandbox Dream</h2>
-                </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <span>Blog 02</span>
+                <h2>Sandbox Dream</h2>
             </div>
-
             <div class="quest-card" onclick="loadMission('part3.html')">
-                <div class="quest-info">
-                    <span>Chapter 03</span>
-                    <h2>The Grind</h2>
-                </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <span>Blog 03</span>
+                <h2>The Ritual</h2>
             </div>
         </div>
 
         <div id="mission-control">
             <div class="viewer-taskbar">
-                <span style="font-size: 0.8rem; color: var(--primary-light); font-family: monospace;">SYSTEM_VIEWER.EXE</span>
+                <span style="font-size: 0.8rem; color: var(--primary-light); font-family: monospace;">LOAD_FILE.EXE</span>
                 <button class="close-btn" onclick="closeMission()">EXIT</button>
             </div>
             <iframe id="missionFrame" src=""></iframe>
@@ -199,9 +185,7 @@
             const frame = document.getElementById('missionFrame');
             viewer.style.display = 'block';
             frame.src = pageUrl;
-            setTimeout(() => {
-                viewer.scrollIntoView({ behavior: 'smooth' });
-            }, 50);
+            setTimeout(() => { viewer.scrollIntoView({ behavior: 'smooth' }); }, 50);
         }
 
         function closeMission() {
@@ -210,15 +194,14 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        let mybutton = document.getElementById("scrollTopBtn");
         window.onscroll = function() {
+            let btn = document.getElementById("scrollTopBtn");
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                mybutton.style.display = "block";
+                btn.style.display = "block";
             } else {
-                mybutton.style.display = "none";
+                btn.style.display = "none";
             }
         };
     </script>
-
 </body>
 </html>
