@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap');
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    font-family: 'Georgia', serif;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #16425b;
+    margin-bottom: 50px;
+}
+
+.biography-layout {
+    display: block;
+    overflow: auto;
+}
+
+.profile-column {
+    float: left;
+    width: 320px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 4px solid #16425b;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.student-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: #2c3e50;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.content-column {
+    overflow: hidden;
+}
+
+.section-title {
+    color: #3d7a9d;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    
+    border-left: 6px solid #16425b;
+    padding-left: 15px;
+}
+
+p {
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+sup {
+    color: #999;
+    font-weight: bold;
+}
