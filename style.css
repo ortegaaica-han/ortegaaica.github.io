@@ -80,3 +80,9 @@ sup {
     color: #999;
     font-weight: bold;
 }
+
+.profile-img:hover {
+    cursor: zoom-in; /* Changes the mouse to a magnifying glass icon */
+    opacity: 0.9;
+    transition: 0.3s;
+}
