@@ -13,8 +13,6 @@
             --shadow-glow: rgba(129, 195, 215, 0.4);
         }
 
-        html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: var(--page-bg);
@@ -23,68 +21,66 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-bottom: 50px;
         }
 
         header {
             text-align: center;
-            padding: 30px 20px 10px;
+            padding: 40px 20px 10px;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-shadow: 0 0 15px var(--shadow-glow);
         }
 
-        /* Hero Image Styling */
         .hero-container {
-            width: 100%;
-            max-width: 600px; /* This ensures it's not too small like in your screenshot */
-            margin: 10px 0 20px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
         }
 
         .hero-img {
             width: 100%;
             height: auto;
-            border-radius: 15px;
-            border: 3px solid var(--primary-light);
-            box-shadow: 0 0 20px var(--shadow-glow);
+            border-radius: 20px;
+            border: 4px solid var(--primary-light);
+            box-shadow: 0 0 25px var(--shadow-glow);
+            display: block;
         }
 
         .author-meta {
             max-width: 700px;
             text-align: center;
             color: var(--primary-light);
-            font-size: 1rem;
-            margin: 5px 20px 25px;
-            line-height: 1.5;
+            font-size: 1.1rem;
+            margin: 15px 20px 35px;
+            line-height: 1.6;
+            font-weight: 300;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             width: 100%;
-            padding: 10px 20px;
+            padding: 0 20px;
         }
 
-        /* Quest Card Grid */
         .quest-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .quest-card {
             background: var(--card-bg);
-            padding: 15px 20px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 12px;
             border: 1px solid rgba(129, 195, 215, 0.2);
-            transition: all 0.2s ease;
+            transition: 0.3s ease;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -92,76 +88,59 @@
         }
 
         .quest-card:hover {
-            background: rgba(129, 195, 215, 0.1);
+            transform: translateY(-5px);
+            background: rgba(129, 195, 215, 0.15);
             border-color: var(--primary-light);
-            box-shadow: 0 0 15px var(--shadow-glow);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .quest-info h2 { margin: 0; font-size: 1.1rem; color: #d9dcd6; }
-        .quest-info span { font-size: 0.7rem; color: var(--primary-light); text-transform: uppercase; }
+        .quest-info h2 { margin: 0; font-size: 1.2rem; }
+        .quest-info span { font-size: 0.75rem; color: var(--primary-light); text-transform: uppercase; }
 
-        /* Viewer Area */
         #mission-control {
             width: 100%;
             display: none;
-            margin-top: 10px;
-        }
-
-        .viewer-taskbar {
-            background: #000;
-            padding: 8px 15px;
-            border-radius: 8px 8px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--primary-light);
+            margin-top: 30px;
         }
 
         iframe {
             width: 100%;
-            height: 75vh;
-            border: 1px solid var(--primary-light);
-            border-radius: 0 0 8px 8px;
+            height: 80vh;
+            border: 2px solid var(--primary-light);
+            border-radius: 0 0 12px 12px;
             background: #fff;
+        }
+
+        .viewer-taskbar {
+            background: #000;
+            padding: 10px 20px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid var(--primary-light);
+            border-bottom: none;
         }
 
         .close-btn {
             background: #ff4d4d;
             border: none;
             color: white;
-            border-radius: 4px;
+            padding: 5px 15px;
+            border-radius: 5px;
             cursor: pointer;
-            padding: 2px 8px;
-            font-size: 11px;
             font-weight: bold;
-        }
-
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            background: var(--primary-light);
-            color: var(--page-bg);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 100;
         }
     </style>
 </head>
 <body>
-
-    <button onclick="window.scrollTo(0,0)" id="scrollTopBtn">▲</button>
 
     <header>
         <h1>Aica Ortega</h1>
     </header>
 
     <div class="hero-container">
-        <img src="WIN_20240827_10_54_07_Pro.jpg" class="hero-img" alt="Aica Ortega Profile">
+        <img src="image1.jpg" class="hero-img" alt="Aica Ortega">
     </div>
 
     <p class="author-meta">
@@ -176,7 +155,7 @@
                     <span>Profile</span>
                     <h2>Biography</h2>
                 </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <div style="font-size: 1.5rem;">➔</div>
             </div>
 
             <div class="quest-card" onclick="loadMission('part1.html')">
@@ -184,7 +163,7 @@
                     <span>Chapter 01</span>
                     <h2>Tug-of-War</h2>
                 </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <div style="font-size: 1.5rem;">➔</div>
             </div>
 
             <div class="quest-card" onclick="loadMission('part2.html')">
@@ -192,7 +171,7 @@
                     <span>Chapter 02</span>
                     <h2>Sandbox Dream</h2>
                 </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <div style="font-size: 1.5rem;">➔</div>
             </div>
 
             <div class="quest-card" onclick="loadMission('part3.html')">
@@ -200,13 +179,13 @@
                     <span>Chapter 03</span>
                     <h2>The Grind</h2>
                 </div>
-                <div style="font-size: 1.2rem; opacity: 0.5;">▶</div>
+                <div style="font-size: 1.5rem;">➔</div>
             </div>
         </div>
 
         <div id="mission-control">
             <div class="viewer-taskbar">
-                <span style="font-size: 0.8rem; color: var(--primary-light); font-family: monospace;">SYSTEM_VIEWER.EXE</span>
+                <span style="font-family: monospace; font-size: 0.8rem;">MISSION_LOG.EXE</span>
                 <button class="close-btn" onclick="closeMission()">EXIT</button>
             </div>
             <iframe id="missionFrame" src=""></iframe>
@@ -214,31 +193,18 @@
     </div>
 
     <script>
-        function loadMission(pageUrl) {
+        function loadMission(url) {
             const viewer = document.getElementById('mission-control');
             const frame = document.getElementById('missionFrame');
             viewer.style.display = 'block';
-            frame.src = pageUrl;
-            setTimeout(() => {
-                viewer.scrollIntoView({ behavior: 'smooth' });
-            }, 50);
+            frame.src = url;
+            viewer.scrollIntoView({ behavior: 'smooth' });
         }
-
         function closeMission() {
             document.getElementById('mission-control').style.display = 'none';
-            document.getElementById('missionFrame').src = "";
+            document.getElementById('missionFrame').src = '';
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
-
-        window.onscroll = function() {
-            let btn = document.getElementById("scrollTopBtn");
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
-        };
     </script>
-
 </body>
 </html>
